@@ -6,28 +6,59 @@ android:layout_width="match_parent"
 android:layout_height="match_parent"
 tools:context="kev7862.github.googlefinder.MapsActivity">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="3">
+
+
     <EditText
         android:id="@+id/searchT"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:ems="10"
+        android:textColor="#000000"
         android:inputType="textPersonName"
         android:hint="@string/edit"
-        android:layout_toLeftOf="@+id/searchB"
-        android:layout_toStartOf="@+id/searchB" />
+        android:layout_weight="2"/>
 
     <Button
         android:id="@+id/searchB"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/searchT"
+        android:layout_marginTop="8dp"
         android:text="@string/editbutton"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:onClick="clickFunction"
+        android:layout_weight="1"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:id="@+id/bHospital"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/hosi"
+            android:onClick="clickFunction"/>
+
+        <Button
+            android:id="@+id/bRestaurant"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/rest"
+            android:onClick="clickFunction"/>
+
+        <Button
+            android:id="@+id/bSchool"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/sch"
+            android:onClick="clickFunction"/>
+    </LinearLayout>
 
 
     <fragment xmlns:android="http://schemas.android.com/apk/res/android"
