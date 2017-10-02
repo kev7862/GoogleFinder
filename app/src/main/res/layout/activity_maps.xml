@@ -10,7 +10,8 @@ tools:context="kev7862.github.googlefinder.MapsActivity">
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:weightSum="3">
+        android:weightSum="3"
+        android:id="@+id/linearLayout">
 
 
     <EditText
@@ -36,30 +37,41 @@ tools:context="kev7862.github.googlefinder.MapsActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:weightSum="3"
+        android:orientation="horizontal"
+        android:id="@+id/linearLayout2"
+        android:layout_marginTop="50dp">
 
-        <Button
-            android:id="@+id/bHospital"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/hosi"
-            android:onClick="clickFunction"/>
 
-        <Button
-            android:id="@+id/bRestaurant"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/rest"
-            android:onClick="clickFunction"/>
+    <Button
+        android:id="@+id/bSchool"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:onClick="clickFunction"
+        android:text="@string/sch"
+        tools:ignore="ButtonStyle" />
 
-        <Button
-            android:id="@+id/bSchool"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/sch"
-            android:onClick="clickFunction"/>
+    <Button
+        android:id="@+id/bHospital"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:onClick="clickFunction"
+        android:text="@string/hosi"
+        tools:ignore="ButtonStyle" />
+
+    <Button
+        android:id="@+id/bRestaurant"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:onClick="clickFunction"
+        android:text="@string/rest"
+        tools:ignore="ButtonStyle" />
+
     </LinearLayout>
-
 
     <fragment xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:map="http://schemas.android.com/apk/res-auto"
@@ -68,8 +80,8 @@ tools:context="kev7862.github.googlefinder.MapsActivity">
         android:name="com.google.android.gms.maps.SupportMapFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginTop="100dp"
         tools:context="kev7862.github.googlefinder.MapsActivity" />
-
 
 
 </RelativeLayout>
