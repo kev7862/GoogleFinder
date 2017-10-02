@@ -3,4 +3,7 @@
     <string name="title_activity_maps">Map</string>
     <string name="edit">Enter location</string>
     <string name="editbutton">Search</string>
+    <string name="hosi">Hospital</string>
+    <string name="rest">Restaurant</string>
+    <string name="sch">School</string>
 </resources>
