@@ -74,4 +74,20 @@ public class DataParser {
 
         return placesList;
     }
+
+    // Method 3: This will Parse the Json data and send it to get places method, take the Json Array then the
+    //get places method will call the get place method using the for loop and it will fetch each element from the
+    //JsonArray for each place and then store it in the places List.
+    public List<HashMap<String, String>> parse(String jsonData) {
+        JSONArray jsonArray = null;
+        JSONObject jsonObject;
+
+        try {
+            jsonObject = new JSONObject(jsonData);
+            jsonArray = jsonObject.getJSONArray("results");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return getPlaces(jsonArray);
+    }
     }
