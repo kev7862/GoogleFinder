@@ -27,7 +27,7 @@ public class PlacesData extends AsyncTask<Object, String, String> {
             e.printStackTrace();
         }
 
-        return null;
+        return googlePlacesData;
     }
 
     @Override
