@@ -63,7 +63,15 @@ public class DataParser {
         HashMap<String, String> placeMap = null;
 
         for(int i = 0;i<count;i++) {
-
+// We're using the get() method to fetch one place, and then add it to the List of HashMaps
+            try {
+                placeMap = getPlace((JSONObject) jsonArray.get(i));
+                placesList.add(placeMap);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
         }
+
+        return placesList;
     }
     }
