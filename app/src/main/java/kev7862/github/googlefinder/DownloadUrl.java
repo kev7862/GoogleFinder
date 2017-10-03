@@ -15,7 +15,7 @@ import java.net.URL;
 // This class Retrieves data from the URL using Http URL
 public class DownloadUrl {
 
-    public String readUrl(String myUrl) {
+    public String readUrl(String myUrl) throws IOException {
 
         String data = "";
         InputStream inputStream = null;
@@ -29,11 +29,25 @@ public class DownloadUrl {
             BufferedReader br = new BufferedReader(new InputStreamReader(inputStream));
             StringBuffer sb = new StringBuffer();
 
+            String line = "";
+            while ((line = br.readLine()) !=null) {
+                sb.append(line);
+
+                // Converting the stringbuffer into a string and storing it in the data variable.
+                data = sb.toString();
+                br.close();
+            }
+
 
         } catch (MalformedURLException e) {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }
+        finally {
+            inputStream.close();
+            urlConnection.disconnect();
+        }
+        return data;
     }
 }
