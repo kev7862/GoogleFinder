@@ -13,6 +13,8 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 
+import static java.util.logging.Level.parse;
+
 /**
  * Created by matite on 10/2/17.
  */
@@ -39,7 +41,10 @@ public class PlacesData extends AsyncTask<Object, String, String> {
 
     @Override
     protected void onPostExecute(String s) {
-        super.onPostExecute(s);
+        List<HashMap<String, String>> nearbyPlaceList = null;
+        DataParser parser = new DataParser();
+        nearbyPlaceList = parser.parse(s);
+        showNearbyPlaces(nearbyPlaceList);
     }
     //This method is going to show all the places in the List
     private void showNearbyPlaces(List<HashMap<String, String>> nearbyPlaceList) {
@@ -51,12 +56,12 @@ public class PlacesData extends AsyncTask<Object, String, String> {
             String vacinity = googlePlace.get("vacinity");
             double lat = Double.parseDouble( googlePlace.get("lat") );
             double lng = Double.parseDouble( googlePlace.get("lng") );
-
+// Creating the Marker Option
             LatLng latLng = new LatLng(lat, lng);
             markerOptions.position(latLng);
             markerOptions.title(placeName +" : "+ vacinity);
             markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE));
-
+// Moving the Camera to the Marker
             mMap.addMarker(markerOptions);
             mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
             mMap.animateCamera(CameraUpdateFactory.zoomTo(10));
