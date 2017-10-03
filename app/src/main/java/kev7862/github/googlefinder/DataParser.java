@@ -1,27 +1,25 @@
 package kev7862.github.googlefinder;
 
-import android.os.AsyncTask;
 
-import com.google.android.gms.maps.GoogleMap;
+import org.json.JSONObject;
+
+import java.util.HashMap;
 
 /**
  * Created by matite on 10/2/17.
  */
 
 //helps our UI run Swiftly
-public class DataParser extends AsyncTask<Object, String, String>{
+public class DataParser {
 
-    String googlePlacesData;
-    GoogleMap mMap;
-    String Url;
-
-    @Override
-    protected String doInBackground(Object... objects) {
-        return null;
+    private HashMap<String, String> getPlace(JSONObject googlePlaceJson) {
+        HashMap<String, String> googlePlacesMap = new HashMap<>();
+// Created a String where we can store our parameters
+        String placeName = "-NA-";
+        String vicinity = "-NA-";
+        String latitude = "";
+        String longitude = "";
+        String reference = "";
     }
 
-    @Override
-    protected void onPostExecute(String s) {
-        super.onPostExecute(s);
-    }
 }
