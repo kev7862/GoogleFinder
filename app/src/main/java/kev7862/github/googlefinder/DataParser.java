@@ -1,18 +1,21 @@
 package kev7862.github.googlefinder;
 
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 /**
  * Created by matite on 10/2/17.
  */
 
-//helps our UI run Swiftly
+// This is where we fetch our Json Data
 public class DataParser {
-
+// first method
     private HashMap<String, String> getPlace(JSONObject googlePlaceJson) {
         HashMap<String, String> googlePlacesMap = new HashMap<>();
 // Created a String where we can store our parameters
@@ -52,4 +55,15 @@ public class DataParser {
             }
             return googlePlacesMap;
         }
+
+        // This 2nd method is going to return a list of HashMaps.
+    private List<HashMap<String, String>> getPlaces(JSONArray jsonArray) {
+        int count = jsonArray.length();
+        List<HashMap<String, String>> placesList = new ArrayList<>();
+        HashMap<String, String> placeMap = null;
+
+        for(int i = 0;i<count;i++) {
+
+        }
+    }
     }
