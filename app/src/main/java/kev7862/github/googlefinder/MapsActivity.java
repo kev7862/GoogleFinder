@@ -69,21 +69,22 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             //    ActivityCompat#requestPermissions
             // here to request the missing permissions, and then overriding
             //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+            buildGoogleApiClient();
              mMap.setMyLocationEnabled(true);
             // to handle the case where the user grants the permission. See the documentation
             // for ActivityCompat#requestPermissions for more details.
-            return;
         }
 
     }
 // Building the GoogleApi Client.
-    protected synchronized void buildApiClient() {
+    protected synchronized void buildGoogleApiClient() {
 
         client = new GoogleApiClient.Builder(this)
                 .addConnectionCallbacks(this)
                 .addOnConnectionFailedListener(this)
                 .addApi(LocationServices.API)
                 .build();
+        client.connect();
 
     }
     // search button functionality
