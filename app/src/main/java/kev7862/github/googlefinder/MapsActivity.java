@@ -1,7 +1,11 @@
 package kev7862.github.googlefinder;
 
+import android.location.Address;
+import android.location.Geocoder;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.EditText;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -9,6 +13,9 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+
+import java.io.IOException;
+import java.util.List;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
@@ -22,6 +29,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
+
+
     }
 
 
@@ -43,4 +52,28 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
     }
-}
+    // search button functionality
+    public void clickFunction (View v) {
+
+        if(v.getId() == R.id.searchB){
+            EditText search = (EditText)findViewById(R.id.searchT);
+            String location = search.getText().toString();
+
+            List<Address> addressList = null;
+
+            if( ! location.equals("")) {
+                Geocoder geocoder = new Geocoder(this);
+                try {
+                    addressList = geocoder.getFromLocationName(location, 5);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+//Checking the size ofthe AddressList and initialising it
+                for(int i = 0;i<addressList.size() ; i++);
+
+
+            }
+        }
+    }
+
+    }
