@@ -60,6 +60,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             String location = search.getText().toString();
 
             List<Address> addressList = null;
+            MarkerOptions mo = new MarkerOptions();
 
             if( ! location.equals("")) {
                 Geocoder geocoder = new Geocoder(this);
@@ -68,9 +69,16 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-//Checking the size ofthe AddressList and initialising it
-                for(int i = 0;i<addressList.size() ; i++);
+//Checking the size of the AddressList and initialising it
+                for(int i = 0;i<addressList.size() ; i++) {
 
+                    Address myAddress = addressList.get(i);
+                    LatLng latlng = new LatLng(myAddress.getLatitude(), myAddress.getLongitude());
+                    mo.position(latlng);
+                    mo.title("");
+                    mMap.addMarker(mo);
+                    mMap.animateCamera(CameraUpdateFactory.newLatLng(latlng));
+                }
 
             }
         }
