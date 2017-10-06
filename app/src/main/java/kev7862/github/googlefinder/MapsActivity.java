@@ -45,14 +45,14 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private LocationRequest locationRequest;
     private Location lastLocation;
     private Marker currentLocationMarker;
-    public static final int REQUEST_LOCATION_CODE = 99;
+    public static final int REQUEST_LOCATION_CODE = 100;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             checkLocationPermission();
         }
 
@@ -63,12 +63,13 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
 
     }
-//this method is responsible for handling Permission Request response
+
+    //this method is responsible for handling Permission Request response
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         switch (requestCode) {
             case REQUEST_LOCATION_CODE:
-                if (grantResults.length >0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                     //Permission is granted
                     if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
                         if (client == null) {
@@ -105,7 +106,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             mMap.setMyLocationEnabled(true);
         }
     }
-// Building the GoogleApi Client.
+
+    // Building the GoogleApi Client.
     protected synchronized void buildGoogleApiClient() {
 
         client = new GoogleApiClient.Builder(this)
@@ -116,17 +118,18 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         client.connect();
 
     }
-    // search button functionality
-    public void clickFunction (View v) {
 
-        if(v.getId() == R.id.searchB){
-            EditText search = (EditText)findViewById(R.id.searchT);
+    // search button functionality
+    public void clickFunction(View v) {
+
+        if (v.getId() == R.id.searchB) {
+            EditText search = (EditText) findViewById(R.id.searchT);
             String location = search.getText().toString();
 
             List<Address> addressList = null;
             MarkerOptions mo = new MarkerOptions();
 
-            if( ! location.equals("")) {
+            if (!location.equals("")) {
                 Geocoder geocoder = new Geocoder(this);
                 try {
                     addressList = geocoder.getFromLocationName(location, 5);
@@ -134,7 +137,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     e.printStackTrace();
                 }
 //Checking the size of the AddressList and initialising it
-                for(int i = 0;i<addressList.size() ; i++) {
+                for (int i = 0; i < addressList.size(); i++) {
 
                     Address myAddress = addressList.get(i);
                     LatLng latlng = new LatLng(myAddress.getLatitude(), myAddress.getLongitude());
@@ -151,8 +154,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     @Override
     public void onLocationChanged(Location location) {
 
-lastLocation = location;
-        if (currentLocationMarker !=null) {
+        lastLocation = location;
+        if (currentLocationMarker != null) {
             currentLocationMarker.remove();
         }
 
@@ -189,18 +192,18 @@ lastLocation = location;
         }
 
     }
-// Checking Location Permission if its Granted or Not
-    public boolean checkLocationPermission(){
+
+    // Checking Location Permission if its Granted or Not
+    public boolean checkLocationPermission() {
 
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.ACCESS_FINE_LOCATION)) {
+            if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.ACCESS_FINE_LOCATION)) {
 
-    ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION }, REQUEST_LOCATION_CODE);
-}
-        }
+                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, REQUEST_LOCATION_CODE);
+            }
+        } else {
 
-        else{
-            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION }, REQUEST_LOCATION_CODE);
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, REQUEST_LOCATION_CODE);
         }
         return false;
     }
